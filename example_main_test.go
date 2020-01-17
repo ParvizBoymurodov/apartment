@@ -59,15 +59,15 @@ func ExampleSearchByMaxPrice_ManyResult() {
 	//Output:[{1 25000 2-х комнатная квартира Фирдоуси 5} {2 45000 3-х комнатная квартира Сино 8} {3 55000 2-х комнатная квартира Сино 15}]
 }
 func ExampleSearchByMinPrice_NoResult() {
-	searchMinPrice := searchByMinPrice(apartaments, 0)
+	searchMinPrice := searchByMinPrice(apartaments, 1_000_000)
 	fmt.Println(searchMinPrice)
 	//Output:[]
 }
 
 func ExampleSearchByMinPrice_OneResult() {
-	searchMinPrice := searchByMinPrice(apartaments, 25_000)
+	searchMinPrice := searchByMinPrice(apartaments, 55_000)
 	fmt.Println(searchMinPrice)
-	//Output:[{1 25000 2-х комнатная квартира Фирдоуси 5}]
+	//Output:[{3 55000 2-х комнатная квартира Сино 15}]
 }
 func ExampleSearchInIntervalPrice() {
 	searchIntervalPrice := searchInIntervalPrice(apartaments, 30_000, 400_000)

@@ -44,9 +44,14 @@ func ExampleSortDistanceFromTheCenterDesc() {
 	//Output:[{3 55000 2-х комнатная квартира Сино 15} {2 45000 3-х комнатная квартира Сино 8} {1 25000 2-х комнатная квартира Фирдоуси 5}]
 }
 func ExampleSearchByMaxPrice_NoResult() {
-	searchMaxPrice := searchByMaxPrice(apartaments, 20_000)
+	searchMaxPrice := searchByMaxPrice(apartaments, 0)
 	fmt.Println(searchMaxPrice)
 	//Output:[]
+}
+func ExampleSearchByMaxPrice_OneResult() {
+	searchMaxPrice := searchByMaxPrice(apartaments, 30_000)
+	fmt.Println(searchMaxPrice)
+	//Output:[{1 25000 2-х комнатная квартира Фирдоуси 5}]
 }
 func ExampleSearchByMaxPrice_ManyResult() {
 	searchMaxPrice := searchByMaxPrice(apartaments, 200_000)
@@ -54,10 +59,11 @@ func ExampleSearchByMaxPrice_ManyResult() {
 	//Output:[{1 25000 2-х комнатная квартира Фирдоуси 5} {2 45000 3-х комнатная квартира Сино 8} {3 55000 2-х комнатная квартира Сино 15}]
 }
 func ExampleSearchByMinPrice_NoResult() {
-	searchMinPrice := searchByMinPrice(apartaments, 20_000)
+	searchMinPrice := searchByMinPrice(apartaments, 0)
 	fmt.Println(searchMinPrice)
 	//Output:[]
 }
+
 func ExampleSearchByMinPrice_OneResult() {
 	searchMinPrice := searchByMinPrice(apartaments, 25_000)
 	fmt.Println(searchMinPrice)
@@ -68,8 +74,13 @@ func ExampleSearchInIntervalPrice() {
 	fmt.Println(searchIntervalPrice)
 	//Output:[{2 45000 3-х комнатная квартира Сино 8} {3 55000 2-х комнатная квартира Сино 15}]
 }
+func ExampleSearchInIntervalPrice_OneResult() {
+	searchIntervalPrice := searchInIntervalPrice(apartaments, 25_000, 40_000)
+	fmt.Println(searchIntervalPrice)
+	//Output:[{1 25000 2-х комнатная квартира Фирдоуси 5}]
+}
 func ExampleSearchInIntervalPrice_NoResult() {
-	searchIntervalPrice := searchInIntervalPrice(apartaments, 5_000, 20_000)
+	searchIntervalPrice := searchInIntervalPrice(apartaments, 0, 0)
 	fmt.Println(searchIntervalPrice)
 	//Output:[]
 }
@@ -77,6 +88,11 @@ func ExampleSearchByDistrict_OneDistrict() {
 	searchDistricts := searchByDistricts(apartaments, []string{"Сино"})
 	fmt.Println(searchDistricts)
 	//Output:[{2 45000 3-х комнатная квартира Сино 8} {3 55000 2-х комнатная квартира Сино 15}]
+}
+func ExampleSearchByDistrict_NoDistrict() {
+	searchDistricts := searchByDistricts(apartaments, []string{"Рудаки"})
+	fmt.Println(searchDistricts)
+	//Output:[]
 }
 func ExampleSearchByDistrict_ManyDistrict() {
 	searchDistricts := searchByDistricts(apartaments, []string{"Сино", "Фирдоуси"})
